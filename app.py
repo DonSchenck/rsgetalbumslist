@@ -21,7 +21,7 @@ def getalbumlist():
     cur = conn.cursor()
 
     cur.execute(
-        "SELECT albumID, albumTitle, releaseYear FROM rsalbums ORDER by releaseYear, albumTitle",(album_list,))
+        "SELECT albumID, albumTitle, releaseYear FROM rsalbums ORDER by releaseYear, albumTitle")
 
     album_list = [{
         "albumID": 1,
@@ -33,7 +33,7 @@ def getalbumlist():
         "albumTitle": "Some Girls",
         "releaseYear": 1978}
     ]
-    return jsonify(album_list), 200
+    return jsonify(cur), 200
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
