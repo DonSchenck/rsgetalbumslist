@@ -1,6 +1,7 @@
-FROM registry.access.redhat.com/ubi8/python-39:1-126
+FROM python
 WORKDIR /app
-COPY . .
+COPY . /app
 RUN pip install flask
+RUN pip install mariadb
 EXPOSE 8080
-CMD ["python","app.py"]
+CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0"]

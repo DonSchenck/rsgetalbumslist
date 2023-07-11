@@ -1,9 +1,28 @@
 from flask import Flask, request, jsonify
+import mariadb
+import sys
 
 app = Flask(__name__)
 
 @app.route("/albums")
 def getalbumlist():
+    try:
+        conn = mariadb.connect(
+            user="rsalbums",
+            password="rsalbums",
+            host="rsalbums",
+            port=3306,
+            database="rsalbums"
+        )
+    except mariadb.Error as e:
+        print(f"Error connection to MariaDB Platform: {e}")
+        sys.exit(1)
+
+    cur = conn.cursor()
+
+    cur.execute(
+        "SELECT albumID, albumTitle, releaseYear FROM rsalbums ORDER by releaseYear, albumTitle",(album_list,))
+
     album_list = [{
         "albumID": 1,
         "albumTitle": "Exile on Main Street",
