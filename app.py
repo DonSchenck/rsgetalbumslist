@@ -18,7 +18,7 @@ def getalbumlist():
         print(f"Error connection to MariaDB Platform: {e}")
         sys.exit(1)
 
-    cur = conn.cursor()
+    cur = conn.cursor(dictionary=True)
 
     cur.execute(
         "SELECT albumID, albumTitle, releaseYear FROM rsalbums ORDER by releaseYear, albumTitle")
@@ -33,7 +33,7 @@ def getalbumlist():
         "albumTitle": "Some Girls",
         "releaseYear": 1978}
     ]
-    return jsonify(cur), 200
+    return jsonify(cur.fetchall()), 200
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
