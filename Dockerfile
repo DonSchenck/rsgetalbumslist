@@ -1,5 +1,6 @@
 FROM registry.access.redhat.com/ubi8/python-39
 COPY . /opt/app-root/src
+ENV LD_PRELOAD=/usr/lib/mariadb/libmariadb.so
 RUN pip3 install flask
 RUN pip3 install mariadb
 EXPOSE 8080
