@@ -21,7 +21,7 @@ def getalbumlist():
     cur = conn.cursor(dictionary=True)
 
     cur.execute(
-        "SELECT albumID, albumTitle, releaseYear FROM rsalbums ORDER by releaseYear, albumTitle")
+        "SELECT albumID, albumTitle, releaseYear, trackCount FROM rsalbums ORDER by releaseYear, albumTitle")
 
     album_list = [{
         "albumID": 1,
